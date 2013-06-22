@@ -25,39 +25,44 @@ Then run siriproxy bundle (this will load the plugin from this git repository an
 
 ## Guide
 
-* Install the RVM (the Ruby Version Manager):
+Below is a full guide to get Siri Proxy running on a Ninja Block (Beagle Bone)
 
-```
-\curl -#L https://get.rvm.io | bash -s stable --autolibs=3
-```
+1. Install pre-requisites. If this fails at first, run the command again.
 
-* Reload the RVM environment.
+	`sudo apt-get install libxslt1.1 libxslt-dev xvfb build-essential git-core curl libyaml-dev libssl-dev`
+	
+2. Download and install RVM (if you don't have it already):
+	* Download/install RVM:  
+		`curl -L https://get.rvm.io | bash -s stable --ruby`  
+	* Update .bashrc:  
+		`echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc`
+		`echo 'export PATH=$HOME/.rvm/bin:$PATH' >> ~/.bashrc`  
+	* Activate changes:  
+		`. ~/.bashrc`   
 
-* Run the following command to install Ruby 2.0.0 using RVM:
+3. Confirm that Ruby 2.0.0 (installed by default) will run:   
 
-```
-rvm install 2.0.0
-```
+	`ruby --version`  
 
-* Now install the siriproxy gem:
+4. Now install the siriproxy gem:
 
 ```
 gem install siriproxy
 ```
 
-* Create the ~/.siriproxy configuration directory (in your home):
+5. Create the ~/.siriproxy configuration directory (in your home):
 
 ```
 mkdir ~/.siriproxy
 ```
 
-* Copy over the example configuration file to your siriproxy configuration directory:
+6. Copy over the example configuration file to your siriproxy configuration directory:
 
 ```
-cp ~/.rvm/gems/ruby-2.0.0/gems/siriproxy-0.5.4/config.example.yml ~/.siriproxy/config.yml
+cp ~/.rvm/gems/ruby-2.0.0-p???/gems/siriproxy-0.5.4/config.example.yml ~/.siriproxy/config.yml
 ```
 
-* Edit the ~/.siriproxy/config.yml file using a text/code editor and add this entry to the plugin section with the proper values:
+7. Edit the ~/.siriproxy/config.yml file using a text/code editor and add this entry to the plugin section with the proper values:
 
 ```
     - name: 'HaikuHelper'
@@ -66,42 +71,38 @@ cp ~/.rvm/gems/ruby-2.0.0/gems/siriproxy-0.5.4/config.example.yml ~/.siriproxy/c
 
 * Tip: Be careful to use exact spacing in the config.yml file as the YML format is indentation-sensitive.
 
-* Run the siriproxy command to bundle the siriproxy-ninjablock plugin:
+8. Run the siriproxy command to bundle the siriproxy-ninjablock plugin:
 
 ```
 siriproxy bundle
 ```
 
-* Generate the certificates for siriproxy:
+9. Generate the certificates for siriproxy:
 
 ```
 siriproxy gencerts
 ```
 
-* Transfer the generated certificate (ca.pem) to your phone (you can just e-mail it to yourself):
+10. Transfer the generated certificate (ca.pem) to your phone (you will need to sftp into your NB and get the file from):
 
 ```
-open ~/.siriproxy/
+~/.siriproxy/ca.pem
 ```
 
-* On you your iOS devices, open the e-mail and tap the ca.pem and accept it to add it to your certificate chain.
+11. On you your iOS devices, open the e-mail and tap the ca.pem and accept it to add it to your certificate chain.
 
-* Start SiriProxy (replace XXX.XXX.XXX.XXX with the LAN IP of the machine running SiriProxy/HaikuHelper):
+12. Tell your phone to use your Ninja Block's LAN IP as its DNS server (under Settings > Wi-Fi > Your network)
+
+13. Start SiriProxy (replace XXX.XXX.XXX.XXX with the LAN IP of the NinjaBlock):
 
 ```
 rvmsudo siriproxy server -d XXX.XXX.XXX.XXX -u nobody
 ```
 
-If you get an error about port 443 or 53 being in use, make sure your machine is not running a web server or DNS server. 
-On OS X Mountain Lion (and Lion) Server you will need to unload the httpd service:
+* If you get an error about port 443 or 53 being in use, make sure you are not running a web server or DNS server. 
 
-```
-sudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist
-```
 
-* Tell your phone to use your SiriProxy server's IP as its DNS server (under Settings > Wi-Fi > Your network)
-
-* Test the server by telling Siri "test siri proxy"
+14. Test the server by telling Siri "test siri proxy"
 
 Note: You can update siriproxy and siriproxy-ninjablock in the future by running:
 
