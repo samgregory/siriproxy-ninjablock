@@ -1,0 +1,5 @@
+    - name: 'NinjaBlock'
+      git: 'git://github.com/samgregory/siriproxy-ninjablock.git'
+      token: 'YOUR API TOKEN'
+
+
