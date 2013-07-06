@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'cora'
 require 'siri_objects'
 require 'ninja_blocks'
