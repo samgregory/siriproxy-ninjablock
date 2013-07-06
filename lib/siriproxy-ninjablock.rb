@@ -3,7 +3,7 @@ require 'siri_objects'
 require 'ninja_blocks'
 require 'pp'
 require 'addressable/uri'
-
+require 'pry'
 
 #######
 # This is an extendable plugin/wrapper for the NinjaBlock platform. 
@@ -11,7 +11,7 @@ require 'addressable/uri'
 #
 ######
 
-class SiriProxy::Plugin::Example < SiriProxy::Plugin
+class SiriProxy::Plugin::NinjaBlock < SiriProxy::Plugin
 
   OBJECT = "(?:the )?(.*?)"
   OBJECT_GREEDY = "(?:the )?(.*)"
@@ -25,6 +25,7 @@ class SiriProxy::Plugin::Example < SiriProxy::Plugin
     if config["url"].nil?
       puts "[Error - NinjaBlock] Missing configuration, the NinjaBlock token must be defined in your config.yml file. Find your token at https://a.ninja.is/you" 
     else
+      binding.pry
       NinjaBlocks::token = config["token"]
       reload_configuration
     end
