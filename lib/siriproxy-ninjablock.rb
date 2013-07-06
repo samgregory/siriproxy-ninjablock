@@ -2,6 +2,7 @@ require 'cora'
 require 'siri_objects'
 require 'ninja_blocks'
 require 'pp'
+require 'addressable/uri'
 
 
 #######
