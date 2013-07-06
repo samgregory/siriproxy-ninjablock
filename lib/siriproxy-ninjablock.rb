@@ -11,7 +11,7 @@ require 'addressable/uri'
 #
 ######
 
-class SiriProxy::Plugin::NinjaBlock < SiriProxy::Plugin
+class SiriProxy::Plugin::Ninja < SiriProxy::Plugin
 
   OBJECT = "(?:the )?(.*?)"
   OBJECT_GREEDY = "(?:the )?(.*)"
@@ -25,7 +25,7 @@ class SiriProxy::Plugin::NinjaBlock < SiriProxy::Plugin
     if config["url"].nil?
       puts "[Error - NinjaBlock] Missing configuration, the NinjaBlock token must be defined in your config.yml file. Find your token at https://a.ninja.is/you" 
     else
-      NinjaBlocks::token = config["token"]
+      ::NinjaBlocks::token = config["token"]
       reload_configuration
     end
   end
@@ -34,9 +34,9 @@ class SiriProxy::Plugin::NinjaBlock < SiriProxy::Plugin
   def reload_configuration
     puts "[Info - NinjaBlock] Reloading NinjaBlock configuration..."
 
-    @devices = NinjaBlocks::Device.list
-    @rules = NinjaBlocks::Rule.list
-    @user = NinjaBlocks::User.info
+    @devices = ::NinjaBlocks::Device.list
+    @rules = ::NinjaBlocks::Rule.list
+    @user = ::NinjaBlocks::User.info
   end
 
   
