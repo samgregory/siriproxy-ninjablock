@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version     = "0.0.1" 
   s.authors     = ["samgregory"]
   s.email       = ["sam.gregory@exemail.com.au"]
-  s.homepage    = "www.ninjablocks.com"
+  s.homepage    = "http://www.ninjablocks.com/"
   s.summary     = %q{A Ninja Block Siri Proxy Plugin}
   s.description = %q{This plugin uses the Ninja Block ruby API to access the cloud. It is designed to be extended to other interface with people's devices. }
 
@@ -19,5 +19,6 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   s.add_dependency "ninja_blocks"
+  s.add_dependency "addressable"	
 
 end

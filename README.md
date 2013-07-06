@@ -65,7 +65,7 @@ cp ~/.rvm/gems/ruby-2.0.0-p???/gems/siriproxy-0.5.4/config.example.yml ~/.siripr
 7. Edit the ~/.siriproxy/config.yml file using a text/code editor and add this entry to the plugin section with the proper values:
 
 ```
-    - name: 'HaikuHelper'
+    - name: 'NinjaBlock'
       git: 'git://github.com/samgregory/siriproxy-ninjablock.git'
       token: 'YOUR API TOKEN`
 
